@@ -1,3 +1,4 @@
+@defer {
 @if (pokemonDetails$ | async; as pokemonDetails) {
 <mat-card class="pokemon-detail-card">
   <mat-card-header>
@@ -34,3 +35,6 @@
   </mat-card-actions>
 </mat-card>
 }
+} @loading  {
+  <mat-spinner></mat-spinner> 
+} 

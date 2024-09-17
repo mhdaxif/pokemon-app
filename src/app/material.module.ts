@@ -7,6 +7,7 @@ import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardSubtitle
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { MatButton } from '@angular/material/button';
+import { MatProgressSpinner  } from '@angular/material/progress-spinner';
 
 // TODO: Split modules component/module wise. 
 export const materiaModules = [
@@ -28,5 +29,7 @@ export const materiaModules = [
     MatCardHeader,
     MatCardSubtitle,
     MatButton,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinner 
 ];
+  
