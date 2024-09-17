@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { SaveStateGuard } from './core/guards/save-state.guard';
 
 export const routes: Routes = [
     {
@@ -8,7 +9,8 @@ export const routes: Routes = [
     },
     {
         path: 'home', 
-        loadComponent: () => import('./features/pokemon/home/home.component').then(m => m.HomeComponent)
+        loadComponent: () => import('./features/pokemon/home/home.component').then(m => m.HomeComponent),
+        canDeactivate: [SaveStateGuard ]
     }, 
     {
         path: 'detail/:id',

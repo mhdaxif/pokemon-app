@@ -19,11 +19,12 @@ export class AppStateService {
 
     getState(): AppState {
         return this.stateSubject.getValue();
-    }
+    } 
 
     setState(partialState: Partial<AppState>): void {
         const currentState = this.getState();
         this.stateSubject.next({ ...currentState, ...partialState });
+        console.log("satc",partialState)
     }
 
     setSelectedPokemon(pokemon: any): void {
