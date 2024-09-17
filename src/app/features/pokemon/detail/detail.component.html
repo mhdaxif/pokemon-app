@@ -1,0 +1,36 @@
+@if (pokemonDetails$ | async; as pokemonDetails) {
+<mat-card class="pokemon-detail-card">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <img [src]="pokemonDetails.frontShiny" alt="{{ pokemonDetails.name }}" class="pokemon-image">
+    </div>
+    <mat-card-title>{{ pokemonDetails.name | titlecase }}</mat-card-title>
+    <mat-card-subtitle>Abilities and Statistics</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <section class="abilities-section">
+      <h3>Abilities</h3>
+      <ul>
+        <li *ngFor="let ability of pokemonDetails.abilities">
+          <strong>{{ ability.name }}</strong> - Effort: <span>{{ ability.isHidden ? 'Yes' : 'No' }}</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="statistics-section">
+      <h3>Statistics</h3>
+      <ul>
+        <li *ngFor="let stat of pokemonDetails.stats">
+          <strong>{{ stat.name }}</strong>:
+          Effort: {{ stat.effort }} | Base Stat: {{ stat.baseStat }}
+        </li>
+      </ul>
+    </section>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="backToPage()">Go back</button>
+  </mat-card-actions>
+</mat-card>
+}

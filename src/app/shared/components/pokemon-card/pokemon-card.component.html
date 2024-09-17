@@ -1,0 +1,19 @@
+<mat-card class="pokemon-card">
+  <mat-card-header>
+    <div class="title-header">
+      <a [routerLink]="'/detail/'+pokemon.id" [state]="{ pokemon }">
+        <mat-card-title>{{ pokemon.name | titlecase }}</mat-card-title>
+      </a>
+      <mat-icon (click)="toggleFavorite(pokemon)">{{ pokemon.isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+    </div>
+
+  </mat-card-header>
+  <mat-card-content>
+    <div class="image">
+      <img [src]="pokemon.frontShiny" />
+    </div>
+
+    <p>Weight: {{ pokemon.weight }} kg</p>
+    <p>Height: {{ pokemon.height }} m</p>
+  </mat-card-content>
+</mat-card>

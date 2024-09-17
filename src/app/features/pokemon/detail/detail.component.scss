@@ -1,0 +1,44 @@
+
+.pokemon-detail-card {
+  max-width: 700px;
+  margin: 20px auto;
+  text-align: left;
+  padding: 16px;
+}
+
+.pokemon-image {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.abilities-section,
+.statistics-section {
+  margin-top: 20px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+.mat-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+}

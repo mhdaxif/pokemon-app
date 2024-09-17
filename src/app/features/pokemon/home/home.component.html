@@ -1,0 +1,25 @@
+<mat-card class="full-page-card">
+    <div class="scrollable-content">
+        <div class="header"> 
+            <mat-form-field appearance="outline" class="search-bar">
+                <mat-label>Search by name </mat-label>
+                <input matInput [(ngModel)]="searchTerm" (ngModelChange)="onfilteredPokemon(searchTerm)">
+            </mat-form-field>
+        </div> 
+        <div class="card-layout"> 
+            @defer {
+            @for (pokemon of filteredPokemon$ | async; track pokemon.id) {  
+            <app-pokemon-card  (onFavorite)="handleToggleFavorite($event)" [pokemon]="pokemon" />
+            }  
+            } @loading (minimum 500ms) {
+            <p>Loading Pokemons</p>
+            } @error { 
+            <p>Failed to load dependencies</p>
+            }
+        </div> 
+    </div>
+  
+    <div class="sticky-pagination">
+        <app-pagination [totalCount]="1300" (pageChange)="onPageEvent($event)"></app-pagination> 
+    </div>
+  </mat-card> 
