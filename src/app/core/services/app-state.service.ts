@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DisplayPokemon } from '../../shared/models';
 
-interface AppState {
+export interface AppState {
     selectedPokemon?: DisplayPokemon;
     pokemonSearch?: string;
-}
-
-@Injectable({
+    totalPokemonCount?: number;
+} 
+ 
+@Injectable({ 
     providedIn: 'root'
 })
-export class AppStateService {
+export class AppStateService {  
     private initialState: AppState = {
     };
 
@@ -30,12 +31,4 @@ export class AppStateService {
     setSelectedPokemon(pokemon: any): void {
         this.setState({ selectedPokemon: pokemon });
     }
-}
-/* 
-this.appStateService.state$.subscribe(state => {
-    this.pokemonStats = state.pokemonStats;
-  }); 
-  
-const newState = { pokemonStats: { name: 'Pikachu' } };
-service.setState(newState); 
-*/
+} 

@@ -13,7 +13,10 @@
         </div>
     </div>
 
-    <div class="sticky-pagination">
-        <app-pagination [totalCount]="1300" (pageChange)="onPageEvent($event)"></app-pagination>
-    </div>
-</mat-card>
+    @if (appState$ | async; as stat) {
+        <div class="sticky-pagination">
+            <app-pagination [totalCount]="stat.totalPokemonCount || 0" (pageChange)="onPageEvent($event)"></app-pagination>
+        </div> 
+    }    
+ 
+</mat-card>  

@@ -3,6 +3,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { EMPTY, Observable, catchError, count, forkJoin, from, map, of, retry, switchMap } from 'rxjs';
 import { DisplayPokemon, Pokemon, Ability, Statistics, RawAbility, RawStats, PokemonListResponseModel } from '../../shared/models';
 import { FavoriteService } from './favorite.service';
+import { AppStateService } from './app-state.service';
 
 const PAGE_SIZE = 20;   
 
@@ -12,6 +13,7 @@ const PAGE_SIZE = 20;
 export class PokemonService {
   private readonly httpClient = inject(HttpClient);
   private readonly favoriteService = inject(FavoriteService);
+  private readonly appStateService = inject(AppStateService);
 
   getPokemons(offset = 0, limit: number = PAGE_SIZE): Observable<DisplayPokemon[]> {   
    if(!offset) offset = 0;
@@ -21,12 +23,19 @@ export class PokemonService {
     return this.httpClient
       .get<PokemonListResponseModel>(url)
       .pipe(
-        map((x: PokemonListResponseModel) => x.results),
+        map((x: PokemonListResponseModel) => {
+          const newState = { totalPokemonCount: x.count };
+          this.appStateService.setState(newState);  
+
+          return x.results;
+        }),
         switchMap((results) => forkJoin(results.map((x: any) => this.fetchPokemonData(x.url))))
       );
   }
 
   private covertToPokemon(pokemon: Pokemon): DisplayPokemon {
+    if(!pokemon) return {} as DisplayPokemon; 
+    
     const { id, name, height, weight, sprites, abilities: a, stats: statistics } = pokemon;
 
     const { abilities, stats }: { abilities: Ability[]; stats: Statistics[]; } = this.shapeData(a, statistics);
