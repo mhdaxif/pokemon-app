@@ -66,14 +66,11 @@ export class HomeComponent implements CanComponentDeactivate {
     this.loadPageData(offset, limit);
   }
 
-  loadPageData(offset?: number, limit?: number): void {
-    if (this.pokemonList$) this.pokemonList$ = of([]);
-    if (this.filteredPokemon$) this.filteredPokemon$ = of([]);
-
+  loadPageData(offset?: number, limit?: number): void { 
     this.pokemonList$ = this.pokemonService.getPokemons(offset, limit);
     this.filteredPokemon$ = this.pokemonList$;
   }
-
+ 
 
   saveState(): void {
     const newState = { pokemonSearch: this.searchTerm };
