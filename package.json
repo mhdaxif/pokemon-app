@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng deploy --repo=https://github.com/mhdaxif/pokemon-app --base-href=/pokemon-app/"
   },
   "private": true,
   "dependencies": {
